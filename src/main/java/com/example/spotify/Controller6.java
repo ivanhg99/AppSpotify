@@ -14,6 +14,8 @@ public class Controller6 {
     @FXML
     private TextField campo;
 
+    // PARA PAGAR POR PAYPAL//
+    
     @FXML
     void pagarp(ActionEvent event) {
         if (campo.getText().isEmpty()){
