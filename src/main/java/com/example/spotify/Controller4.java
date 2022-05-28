@@ -44,6 +44,8 @@ public class Controller4 {
     @FXML
     private DatePicker fecha_nacimiento;
 
+    // BOTON PARA REGISTRARSE COMO FREE//
+    
     @FXML
     void free(ActionEvent event) {
         String usuarioi = usuario_intro.getText();
@@ -74,7 +76,6 @@ public class Controller4 {
                         stmt.executeUpdate("INSERT INTO usuario(username,password,email,genero,fecha_nacimiento,pais,codigo_postal)" +
                                 "VALUES('" + usuarioi + "','" + passi + "','" + emaili + "','" + generoi + "','" + fecha_nacimiento.getValue() + "','" + paisi + "','" + codigoi + "')");
                         ResultSet rs = stmt.executeQuery("SELECT id FROM usuario WHERE username LIKE '" + usuario_intro.getText() + "'");
-// Procesa los resultados
                         if (rs.next()) {
                             String id_usuario = rs.getString("id");
                             stmt.executeUpdate("INSERT INTO free(fecha_revision,tiempo_publicidad,usuario_id)" +
@@ -94,7 +95,8 @@ public class Controller4 {
 
     }
 
-
+// BOTON PARA REGISTRARSE COMO PREMIUM//
+    
     @FXML
     void pagar_premium(ActionEvent event) {
         String usuarioi = usuario_intro.getText();
@@ -125,7 +127,6 @@ public class Controller4 {
                         stmt.executeUpdate("INSERT INTO usuario(username,password,email,genero,fecha_nacimiento,pais,codigo_postal)" +
                                 "VALUES('" + usuarioi + "','" + passi + "','" + emaili + "','" + generoi + "','" + fecha_nacimiento.getValue() + "','" + paisi + "','" + codigoi + "')");
                         ResultSet rse = stmt.executeQuery("SELECT id FROM usuario WHERE username LIKE '" + usuario_intro.getText() + "'");
-// Procesa los resultados
                         if (rse.next()) {
                             String id_usuario = rse.getString("id");
                             stmt.executeUpdate("INSERT INTO premium(fecha_renovación,usuario_id)" +
