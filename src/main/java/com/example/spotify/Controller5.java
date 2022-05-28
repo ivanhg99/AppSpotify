@@ -19,6 +19,8 @@ public class Controller5 {
     @FXML
     private Button btn_tarjeta;
 
+    // ABRIR VENTANA DE PAYPAL//
+    
     @FXML
     void pagar_paypal(ActionEvent event) {
         fxmlLoader = new FXMLLoader(Main.class.getResource("paypal.fxml"));
@@ -37,6 +39,8 @@ public class Controller5 {
         }
     }
 
+    // ABRIR VENTANA DE TARJETA//
+    
     @FXML
     void tarjeta_credito(ActionEvent event) {
         fxmlLoader = new FXMLLoader(Main.class.getResource("tarjeta.fxml"));
