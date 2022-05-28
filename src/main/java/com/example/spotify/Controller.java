@@ -298,48 +298,6 @@ public class Controller implements Initializable {
     private Pane idiomas;
 
     @FXML
-    private Button dejar_de_seguir1;
-
-    @FXML
-    private Button dejar_de_seguir7;
-
-    @FXML
-    private Button dejar_de_seguir6;
-
-    @FXML
-    private Button dejar_de_seguir5;
-
-    @FXML
-    private Button dejar_de_seguir4;
-
-    @FXML
-    private Button dejar_de_seguir3;
-
-    @FXML
-    private Button dejar_de_seguir2;
-
-    @FXML
-    private Label usuario1;
-
-    @FXML
-    private Label usuario2;
-
-    @FXML
-    private Label usuario3;
-
-    @FXML
-    private Label usuario4;
-
-    @FXML
-    private Label usuario5;
-
-    @FXML
-    private Label usuario6;
-
-    @FXML
-    private Label usuario7;
-
-    @FXML
     private Pane panel_amigo;
 
     @FXML
