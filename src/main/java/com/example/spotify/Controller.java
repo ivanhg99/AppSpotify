@@ -421,11 +421,15 @@ public class Controller implements Initializable {
 
     Controller Controlador1;
 
+    // CADA VEZ QUE EL RATON ENTRA A UN APARTADO DE LA IZQUIERDA//
+    
     @FXML
     void raton_se_mueve(MouseEvent event) {
         event.getPickResult().getIntersectedNode().setStyle("-fx-border-color: red; -fx-border-width: 5;");
     }
 
+    // CADA VEZ QUE EL RATON SALE DE UN APARTADO//
+    
     @FXML
     void raton_se_va(MouseEvent event) {
         casa.setStyle("-fx-border-color: none; -fx-border-width: none;");
@@ -440,10 +444,13 @@ public class Controller implements Initializable {
         playlist.setStyle("-fx-border-color: none; -fx-border-width: none;");
     }
 
+    // CADA VEZ QUE HACES CLICK EN UN LABEL PARA QUE TE SAQUE SU ID//
+    
     @FXML
     void click(MouseEvent event) {
         pp = event.getPickResult().getIntersectedNode().getId();
         switch (pp) {
+                
             case "casa":
                 panel_sigue_art.setVisible(false);
                 panel_canciongusta.setVisible(false);
@@ -460,12 +467,12 @@ public class Controller implements Initializable {
                 panel_podcastsigue.setVisible(false);
                 scroll.setVvalue(0.0);
                 break;
+                
             case "explora":
                 playlisttodasl.clear();
                 try {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT playlist.* FROM playlist");
-// Procesa los resultados
                     while (rs.next()) {
                         String titu = rs.getString("titulo");
                         int bn = rs.getInt("id");
@@ -507,9 +514,11 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "radio":
-                System.out.println("c");
+                System.out.println("c");            
                 break;
+                
             case "hechas_para_ti":
                 panel_sigue_art.setVisible(false);
                 panel_canciongusta.setVisible(false);
@@ -526,6 +535,7 @@ public class Controller implements Initializable {
                 panel_podcastsigue.setVisible(false);
                 scroll.setVvalue(0);
                 break;
+                
             case "escuchadas_recientemente":
                 panel_sigue_art.setVisible(false);
                 panel_canciongusta.setVisible(false);
@@ -542,13 +552,13 @@ public class Controller implements Initializable {
                 panel_podcastsigue.setVisible(false);
                 scroll.setVvalue(0.33);
                 break;
+                
             case "canciones_que_te_gustan":
                 canciongustl.clear();
                 try {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.titulo FROM cancion " +
                             "INNER JOIN guarda_cancion g ON cancion.id = g.cancion_id INNER JOIN usuario u ON u.id = g.usuario_id WHERE u.username LIKE '" + nombre_usuario.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         CanciongustClase h = new CanciongustClase(tit);
@@ -573,6 +583,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "albumes":
                 panel_sigue_art.setVisible(false);
                 panel_canciongusta.setVisible(false);
@@ -589,6 +600,7 @@ public class Controller implements Initializable {
                 panel_podcastsigue.setVisible(false);
                 scroll.setVvalue(0.66);
                 break;
+                
             case "artistas":
                 panel_sigue_art.setVisible(false);
                 panel_canciongusta.setVisible(false);
@@ -605,6 +617,7 @@ public class Controller implements Initializable {
                 panel_podcastsigue.setVisible(false);
                 scroll.setVvalue(1);
                 break;
+                
             case "podcast":
                 panel_sigue_art.setVisible(false);
                 panel_canciongusta.setVisible(false);
@@ -637,6 +650,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "al_motomami":
                 canciones.clear();
                 titulo_album.setText(album1.getText());
@@ -644,7 +658,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.* FROM cancion " +
                             "INNER JOIN album a ON cancion.album_id = a.id WHERE a.titulo LIKE'" + titulo_album.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         int nr = rs.getInt("numero_reproducciones");
@@ -671,6 +684,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "al_malquerer":
                 canciones.clear();
                 titulo_album.setText(album2.getText());
@@ -678,7 +692,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.* FROM cancion " +
                             "INNER JOIN album a ON cancion.album_id = a.id WHERE a.titulo LIKE'" + titulo_album.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         int nr = rs.getInt("numero_reproducciones");
@@ -705,6 +718,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "al_madrile":
                 canciones.clear();
                 titulo_album.setText(album3.getText());
@@ -712,7 +726,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.* FROM cancion " +
                             "INNER JOIN album a ON cancion.album_id = a.id WHERE a.titulo LIKE'" + titulo_album.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         int nr = rs.getInt("numero_reproducciones");
@@ -739,6 +752,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "al_avida":
                 canciones.clear();
                 titulo_album.setText(album4.getText());
@@ -746,7 +760,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.* FROM cancion " +
                             "INNER JOIN album a ON cancion.album_id = a.id WHERE a.titulo LIKE'" + titulo_album.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         int nr = rs.getInt("numero_reproducciones");
@@ -773,6 +786,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "a_rosalia":
                 artistal.clear();
                 titulo_artista.setText(artista1.getText());
@@ -780,7 +794,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT album.* FROM album " +
                             "INNER JOIN artista a ON album.artista_id = a.id WHERE a.nombre LIKE'" + titulo_artista.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         int an = rs.getInt("anyo");
@@ -806,6 +819,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "a_tangana":
                 artistal.clear();
                 titulo_artista.setText(artista2.getText());
@@ -813,7 +827,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT album.* FROM album " +
                             "INNER JOIN artista a ON album.artista_id = a.id WHERE a.nombre LIKE'" + titulo_artista.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         int an = rs.getInt("anyo");
@@ -839,6 +852,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "a_elche":
                 artistal.clear();
                 titulo_artista.setText(artista3.getText());
@@ -846,7 +860,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT album.* FROM album " +
                             "INNER JOIN artista a ON album.artista_id = a.id WHERE a.nombre LIKE'" + titulo_artista.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         int an = rs.getInt("anyo");
@@ -872,6 +885,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "a_hungara":
                 artistal.clear();
                 titulo_artista.setText(artista4.getText());
@@ -879,7 +893,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT album.* FROM album " +
                             "INNER JOIN artista a ON album.artista_id = a.id WHERE a.nombre LIKE'" + titulo_artista.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         int an = rs.getInt("anyo");
@@ -905,6 +918,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "p_wild":
                 podcastl.clear();
                 titulo_podcast.setText(podcast1.getText());
@@ -912,7 +926,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT capitulo.* FROM capitulo " +
                             "INNER JOIN podcast p ON capitulo.podcast_id = p.id WHERE p.titulo LIKE'" + titulo_podcast.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String titu = rs.getString("titulo");
                         String desc = rs.getString("descripcion");
@@ -939,6 +952,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "p_estirando":
                 podcastl.clear();
                 titulo_podcast.setText(podcast2.getText());
@@ -946,7 +960,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT capitulo.* FROM capitulo " +
                             "INNER JOIN podcast p ON capitulo.podcast_id = p.id WHERE p.titulo LIKE'" + titulo_podcast.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String titu = rs.getString("titulo");
                         String desc = rs.getString("descripcion");
@@ -973,6 +986,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "p_dentri":
                 podcastl.clear();
                 titulo_podcast.setText(podcast3.getText());
@@ -980,7 +994,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT capitulo.* FROM capitulo " +
                             "INNER JOIN podcast p ON capitulo.podcast_id = p.id WHERE p.titulo LIKE'" + titulo_podcast.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String titu = rs.getString("titulo");
                         String desc = rs.getString("descripcion");
@@ -1007,6 +1020,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "p_cuarto":
                 podcastl.clear();
                 titulo_podcast.setText(podcast4.getText());
@@ -1014,7 +1028,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT capitulo.* FROM capitulo " +
                             "INNER JOIN podcast p ON capitulo.podcast_id = p.id WHERE p.titulo LIKE'" + titulo_podcast.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String titu = rs.getString("titulo");
                         String desc = rs.getString("descripcion");
@@ -1041,6 +1054,7 @@ public class Controller implements Initializable {
                 panel_podcastodo.setVisible(false);
                 panel_podcastsigue.setVisible(false);
                 break;
+                
             case "icancion1":
                 nombre_cancionrep.setText(cancion1.getText());
                 nombre_artista.setText("Rosalia");
@@ -1048,7 +1062,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.titulo FROM cancion " +
                             "INNER JOIN guarda_cancion g ON cancion.id = g.cancion_id INNER JOIN usuario u ON u.id = g.usuario_id WHERE u.username LIKE '" + nombre_usuario.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         if (tit.equals(nombre_cancionrep.getText())) {
@@ -1066,6 +1079,7 @@ public class Controller implements Initializable {
                     e.printStackTrace();
                 }
                 break;
+                
             case "icancion2":
                 nombre_cancionrep.setText(cancion2.getText());
                 nombre_artista.setText("Alejandro Sanz");
@@ -1073,7 +1087,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.titulo FROM cancion " +
                             "INNER JOIN guarda_cancion g ON cancion.id = g.cancion_id INNER JOIN usuario u ON u.id = g.usuario_id WHERE u.username LIKE '" + nombre_usuario.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         if (tit.equals(nombre_cancionrep.getText())) {
@@ -1091,6 +1104,7 @@ public class Controller implements Initializable {
                     e.printStackTrace();
                 }
                 break;
+                
             case "icancion3":
                 nombre_cancionrep.setText(cancion3.getText());
                 nombre_artista.setText("Alejandro Sanz");
@@ -1098,7 +1112,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.titulo FROM cancion " +
                             "INNER JOIN guarda_cancion g ON cancion.id = g.cancion_id INNER JOIN usuario u ON u.id = g.usuario_id WHERE u.username LIKE '" + nombre_usuario.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         if (tit.equals(nombre_cancionrep.getText())) {
@@ -1116,6 +1129,7 @@ public class Controller implements Initializable {
                     e.printStackTrace();
                 }
                 break;
+                
             case "icancion4":
                 nombre_cancionrep.setText(cancion4.getText());
                 nombre_artista.setText("C. Tangana");
@@ -1123,7 +1137,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.titulo FROM cancion " +
                             "INNER JOIN guarda_cancion g ON cancion.id = g.cancion_id INNER JOIN usuario u ON u.id = g.usuario_id WHERE u.username LIKE '" + nombre_usuario.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         if (tit.equals(nombre_cancionrep.getText())) {
@@ -1141,6 +1154,7 @@ public class Controller implements Initializable {
                     e.printStackTrace();
                 }
                 break;
+                
             case "icancion5":
                 nombre_cancionrep.setText(cancion5.getText());
                 nombre_artista.setText("Sebastian Yatra");
@@ -1148,7 +1162,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.titulo FROM cancion " +
                             "INNER JOIN guarda_cancion g ON cancion.id = g.cancion_id INNER JOIN usuario u ON u.id = g.usuario_id WHERE u.username LIKE '" + nombre_usuario.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         if (tit.equals(nombre_cancionrep.getText())) {
@@ -1166,6 +1179,7 @@ public class Controller implements Initializable {
                     e.printStackTrace();
                 }
                 break;
+                
             case "icancion6":
                 nombre_cancionrep.setText(cancion6.getText());
                 nombre_artista.setText("Rosalia");
@@ -1173,7 +1187,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.titulo FROM cancion " +
                             "INNER JOIN guarda_cancion g ON cancion.id = g.cancion_id INNER JOIN usuario u ON u.id = g.usuario_id WHERE u.username LIKE '" + nombre_usuario.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         if (tit.equals(nombre_cancionrep.getText())) {
@@ -1191,6 +1204,7 @@ public class Controller implements Initializable {
                     e.printStackTrace();
                 }
                 break;
+                
             case "icancion7":
                 nombre_cancionrep.setText(cancion7.getText());
                 nombre_artista.setText("J. Balvin");
@@ -1198,7 +1212,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.titulo FROM cancion " +
                             "INNER JOIN guarda_cancion g ON cancion.id = g.cancion_id INNER JOIN usuario u ON u.id = g.usuario_id WHERE u.username LIKE '" + nombre_usuario.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         if (tit.equals(nombre_cancionrep.getText())) {
@@ -1216,6 +1229,7 @@ public class Controller implements Initializable {
                     e.printStackTrace();
                 }
                 break;
+                
             case "icancion8":
                 nombre_cancionrep.setText(cancion8.getText());
                 nombre_artista.setText("J. Balvin");
@@ -1223,7 +1237,6 @@ public class Controller implements Initializable {
                     Statement stmt = Base_Datos.conexion().createStatement();
                     ResultSet rs = stmt.executeQuery("SELECT cancion.titulo FROM cancion " +
                             "INNER JOIN guarda_cancion g ON cancion.id = g.cancion_id INNER JOIN usuario u ON u.id = g.usuario_id WHERE u.username LIKE '" + nombre_usuario.getText() + "'");
-// Procesa los resultados
                     while (rs.next()) {
                         String tit = rs.getString("titulo");
                         if (tit.equals(nombre_cancionrep.getText())) {
@@ -1243,22 +1256,24 @@ public class Controller implements Initializable {
                 break;
         }
     }
-
+    
+    //PARA RECOGER EL BUSCADOR DE ARRIBA (NO ACABADO)//
+    
     @FXML
     void intro(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             System.out.println(buscar.getText());
-            //hacer un for para recorrer toda la lista de canciones y si es igual que muestre resultados si no que muestre que no existe
         }
     }
 
+    //CUANDO LE DES AL BOTON PREMIUM SABER SI LO ERES O NO Y SI NO LO ERES ABRIR OTRA VENTANA//
+    
     @FXML
     void premium(ActionEvent event) {
         try {
             Statement stmt = Base_Datos.conexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT u.id FROM usuario u INNER JOIN free f ON (f.usuario_id = u.id) WHERE u.username LIKE '" + nombre_usuario.getText() + "'");
             int cont = 0;
-// Procesa los resultados
             if (rs.next()) {
                 String id_usuario = rs.getString("id");
                 if (!id_usuario.isEmpty()) {
@@ -1266,7 +1281,6 @@ public class Controller implements Initializable {
                         LocalDate fecha_a = LocalDate.now();
                         LocalDate fecha_n = fecha_a.plusMonths(1);
                         ResultSet rse = stmt.executeQuery("SELECT id FROM usuario WHERE username LIKE '" + nombre_usuario.getText() + "'");
-// Procesa los resultados
                         if (rse.next()) {
                             String id_usuariob = rse.getString("id");
                             stmt.executeUpdate("DELETE FROM free WHERE usuario_id = '" + id_usuariob + "'");
@@ -1307,6 +1321,8 @@ public class Controller implements Initializable {
 
     }
 
+    //CUANDO LE DES A LA IMAGEN DEL CORAZON SABER SI ESTA EN FAVORITAS O NO//
+    
     @FXML
     void corazon(MouseEvent event) throws FileNotFoundException {
 
@@ -1336,16 +1352,8 @@ public class Controller implements Initializable {
         }
     }
 
-    @FXML
-    void aleatorio(MouseEvent event) {
-
-    }
-
-    @FXML
-    void adelante(MouseEvent event) {
-
-    }
-
+    //BOTON DE PLAY PARA REPRODUCCIR UNA CANCION//
+    
     @FXML
     void play(MouseEvent event) {
         CancionClase ca = tabla_album.getSelectionModel().getSelectedItem();
@@ -1366,7 +1374,6 @@ public class Controller implements Initializable {
             Statement stmt = Base_Datos.conexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT cancion.titulo FROM cancion " +
                     "INNER JOIN guarda_cancion g ON cancion.id = g.cancion_id INNER JOIN usuario u ON u.id = g.usuario_id WHERE u.username LIKE '" + nombre_usuario.getText() + "'");
-// Procesa los resultados
             while (rs.next()) {
                 String tit = rs.getString("titulo");
                 if (tit.equals(nombre_cancionrep.getText())) {
@@ -1388,7 +1395,6 @@ public class Controller implements Initializable {
             ResultSet rs = stmt.executeQuery("SELECT artista.* FROM artista " +
                     "INNER JOIN album a ON a.artista_id = artista.id " +
                     "INNER JOIN cancion c ON c.album_id = a.id WHERE c.titulo LIKE'" + nombre_cancionrep.getText() + "'");
-// Procesa los resultados
             while (rs.next()) {
                 String nombre = rs.getString("nombre");
                 nombre_artista.setText(nombre);
@@ -1399,16 +1405,8 @@ public class Controller implements Initializable {
         }
     }
 
-    @FXML
-    void atras(MouseEvent event) {
-
-    }
-
-    @FXML
-    void repetir(MouseEvent event) {
-
-    }
-
+    // VENTANA DE INICIAR SESION//
+    
     @FXML
     void iniciar_sesion(ActionEvent event) {
         ajustes1.setVisible(true);
@@ -1433,10 +1431,14 @@ public class Controller implements Initializable {
         }
     }
 
+    //RECIBE EL CONTROLADOR DE INICIO DE SESION//
+    
     @FXML
     public void recibe(String prueba) {
         nombre_usuario.setText(prueba);
     }
+    
+    //INICIA TODAS LAS TABLAS Y LISTAS//
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -1475,6 +1477,8 @@ public class Controller implements Initializable {
         columna_playlist_patrocinada.setCellValueFactory(new PropertyValueFactory<>("nompl"));
     }
 
+    //MENU DE AJUSTES//
+    
     @FXML
     void ajustescombo(ActionEvent event) {
         if (ajustes.getValue().equals("Añadir amigo")) {
@@ -1523,38 +1527,8 @@ public class Controller implements Initializable {
         }
     }
 
-    @FXML
-    void Generos(ActionEvent event) {
-        panel_generos.setVisible(true);
-        panel_podcast.setVisible(false);
-        panel_exitos.setVisible(false);
-        panel_novedades.setVisible(false);
-    }
-
-    @FXML
-    void Podcast_explorar(ActionEvent event) {
-        panel_podcast.setVisible(true);
-        panel_generos.setVisible(false);
-        panel_exitos.setVisible(false);
-        panel_novedades.setVisible(false);
-    }
-
-    @FXML
-    void Exitos(ActionEvent event) {
-        panel_exitos.setVisible(true);
-        panel_generos.setVisible(false);
-        panel_podcast.setVisible(false);
-        panel_novedades.setVisible(false);
-    }
-
-    @FXML
-    void Novedades(ActionEvent event) {
-        panel_novedades.setVisible(true);
-        panel_generos.setVisible(false);
-        panel_podcast.setVisible(false);
-        panel_exitos.setVisible(false);
-    }
-
+   // PANEL DE AÑADIR AMIGOS//
+    
     @FXML
     void intro_amigo(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
@@ -1580,12 +1554,11 @@ public class Controller implements Initializable {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-
-            //hacer un for para recorrer toda la lista de canciones y si es igual que muestre resultados si no que muestre que no existe
         }
     }
 
+    // METODO PARA SEGUIR A UN USUARIO//
+    
     @FXML
     void seguir(ActionEvent event) {
         if (texto_usuario.getText().equals(nombre_usuario.getText())){
@@ -1613,7 +1586,8 @@ public class Controller implements Initializable {
         }
     }
 
-
+//BOTONES DE IDIOMAS//
+    
     @FXML
     void ingles(ActionEvent event) {
         idioma_pre.setText("Ingles");
@@ -1638,6 +1612,8 @@ public class Controller implements Initializable {
     void espaniol(ActionEvent event) {
         idioma_pre.setText("Español");
     }
+    
+    //AÑADE UNA CANCION EN LA PLAYLIST//
 
     @FXML
     void anade_playlist(ActionEvent event) {
@@ -1658,6 +1634,8 @@ public class Controller implements Initializable {
         }
     }
 
+    //CREA UNA PLAYLIST/
+    
     @FXML
     void crear_playlistt(ActionEvent event) {
         if (titulo_playlist.getText().isEmpty()) {
@@ -1670,7 +1648,6 @@ public class Controller implements Initializable {
                 LocalDate fecha = LocalDate.now();
                 Statement stmt = Base_Datos.conexion().createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT * FROM playlist WHERE titulo LIKE '" + titulo_playlist.getText() + "' AND usuario_id = (SELECT id FROM usuario WHERE username LIKE '" + nombre_usuario.getText() + "')");
-// Procesa los resultados
                 if (rs.next()) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Información");
@@ -1692,6 +1669,8 @@ public class Controller implements Initializable {
         }
     }
 
+    //BUSCA UNA CANCION//
+    
     @FXML
     void buscar_cancion(KeyEvent event) {
         String titulo_cancion = cancion_para_playlist.getText();
@@ -1699,7 +1678,6 @@ public class Controller implements Initializable {
             try {
                 Statement stmt = Base_Datos.conexion().createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT titulo FROM cancion");
-// Procesa los resultados
                 while (rs.next()) {
                     String nombre_can = rs.getString("titulo");
                     if (titulo_cancion.equals(nombre_can)) {
@@ -1717,6 +1695,8 @@ public class Controller implements Initializable {
         }
     }
 
+    //CUANDO LE DAS A UN ALBUM ENTRA EN ESE ALBUM PARA VER TODAS LAS CANCIONES//
+    
     @FXML
     void entrar_album(ActionEvent event) {
         ArtistaClase ar = tabla_artista.getSelectionModel().getSelectedItem();
@@ -1726,7 +1706,6 @@ public class Controller implements Initializable {
             Statement stmt = Base_Datos.conexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT cancion.* FROM cancion " +
                     "INNER JOIN album a ON cancion.album_id = a.id WHERE a.titulo LIKE'" + titulo_album.getText() + "'");
-// Procesa los resultados
             while (rs.next()) {
                 String tit = rs.getString("titulo");
                 int nr = rs.getInt("numero_reproducciones");
@@ -1752,6 +1731,8 @@ public class Controller implements Initializable {
         panel_podcastsigue.setVisible(false);
     }
 
+    //ENSEÑA TODOS LOS ARTISTAS EN UNA TABLA//
+    
     @FXML
     void todo_artistas(ActionEvent event) {
         artistatodol.clear();
@@ -1759,7 +1740,6 @@ public class Controller implements Initializable {
             Statement stmt = Base_Datos.conexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM artista");
 
-// Procesa los resultados
             while (rs.next()) {
                 String titus = rs.getString("nombre");
                 ArtistaaasClase e = new ArtistaaasClase(titus);
@@ -1783,6 +1763,8 @@ public class Controller implements Initializable {
         panel_podcastsigue.setVisible(false);
     }
 
+    //ENTRA EN UN ARTISTA PARA VER TODOS SUS ALBUMES//
+    
     @FXML
     void entrar_artista(ActionEvent event) {
         ArtistaaasClase art = tabla_artistaas.getSelectionModel().getSelectedItem();
@@ -1792,7 +1774,6 @@ public class Controller implements Initializable {
             Statement stmt = Base_Datos.conexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT album.* FROM album " +
                     "INNER JOIN artista a ON album.artista_id = a.id WHERE a.nombre LIKE'" + titulo_artista.getText() + "'");
-// Procesa los resultados
             while (rs.next()) {
                 String tit = rs.getString("titulo");
                 int an = rs.getInt("anyo");
@@ -1817,6 +1798,8 @@ public class Controller implements Initializable {
         panel_podcastsigue.setVisible(false);
     }
 
+    //ENTRA EN UNA PLAYLIST PARA VER SUS CANCIONES//
+    
     @FXML
     void clicktabla(MouseEvent event) {
         PlaylistClase arti = tabla_nombres_playlist.getSelectionModel().getSelectedItem();
@@ -1826,7 +1809,6 @@ public class Controller implements Initializable {
             Statement stmt = Base_Datos.conexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT cancion.* FROM cancion " +
                     "INNER JOIN anyade_cancion_playlist a ON cancion.id = a.cancion_id INNER JOIN playlist p ON p.id = a.playlist_id WHERE p.titulo LIKE'" + titulo_album.getText() + "'");
-// Procesa los resultados
             while (rs.next()) {
                 String tit = rs.getString("titulo");
                 int nr = rs.getInt("numero_reproducciones");
@@ -1852,6 +1834,8 @@ public class Controller implements Initializable {
         panel_podcastsigue.setVisible(false);
     }
 
+    //ACTUALIZA LAS PLAYLIST QUE SIGUE EL USUARIO//
+    
     @FXML
     void botonparaplaylist(ActionEvent event) {
         panel_playlistn.setVisible(true);
@@ -1859,7 +1843,6 @@ public class Controller implements Initializable {
         try {
             Statement stmt = Base_Datos.conexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT playlist.* FROM playlist INNER JOIN sigue_playlist sp ON playlist.id = sp.playlist_id INNER JOIN usuario u ON sp.usuario_id = u.id WHERE u.username LIKE'" + nombre_usuario.getText() + "'");
-// Procesa los resultados
             while (rs.next()) {
                 String t = rs.getString("titulo");
                 int ty = rs.getInt("id");
@@ -1873,6 +1856,8 @@ public class Controller implements Initializable {
         }
     }
 
+    //DEJA DE SEGUIR A UN USUARIO//
+    
     @FXML
     void dejar_de_seguir(ActionEvent event) {
         UsuarioClase a = tabla_sigue_usuario.getSelectionModel().getSelectedItem();
@@ -1886,6 +1871,8 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+    
+    //ACTUALIZA LA TABLA DONDE SIGUES A LOS USUARIOS//
 
     @FXML
     void actualiza(ActionEvent event) {
@@ -1893,7 +1880,6 @@ public class Controller implements Initializable {
         try {
             Statement stmt = Base_Datos.conexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT usuario.username FROM usuario INNER JOIN sigue_usuario s ON usuario.id = s.usuario_seguido_id WHERE s.usuario_id =(SELECT id From usuario Where username LIKE '" + nombre_usuario.getText() + "')");
-// Procesa los resultados
             while (rs.next()) {
                 String to = rs.getString("username");
                 UsuarioClase j = new UsuarioClase(to);
@@ -1906,13 +1892,14 @@ public class Controller implements Initializable {
         }
     }
 
+    //ACTUALIZA LA TABLA DONDE SIGUES A LOS ARTISTAS//
+    
     @FXML
     void actualiza_art(ActionEvent event) {
         usuariosiartl.clear();
         try {
             Statement stmt = Base_Datos.conexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT artista.nombre FROM artista INNER JOIN sigue_artista s ON artista.id = s.artista_id WHERE s.usuario_id =(SELECT id From usuario Where username LIKE '" + nombre_usuario.getText() + "')");
-// Procesa los resultados
             while (rs.next()) {
                 String ton = rs.getString("nombre");
                 ArtistaSigueClase k = new ArtistaSigueClase(ton);
@@ -1925,6 +1912,8 @@ public class Controller implements Initializable {
         }
     }
 
+    // DEJA DE SEGUIR A UN ARTISTA//
+    
     @FXML
     void dejar_de_seguir_art(ActionEvent event) {
         ArtistaSigueClase a = tabla_sigue_artista.getSelectionModel().getSelectedItem();
@@ -1938,6 +1927,8 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
     }
+    
+    // SIGUE A UN ARTISTA//
 
     @FXML
     void seguir_art(ActionEvent event) {
@@ -1959,6 +1950,8 @@ public class Controller implements Initializable {
         }
     }
 
+    // BUSCA A UN ARTISTA//
+    
     @FXML
     void intro_artista(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
@@ -1986,6 +1979,9 @@ public class Controller implements Initializable {
             }
         }
     }
+    
+    // ENSEÑA TODO LOS PODCAST//
+    
     @FXML
     void todo_podcast(ActionEvent event) {
         panel_podcastc.setVisible(false);
@@ -1994,7 +1990,6 @@ public class Controller implements Initializable {
         try {
             Statement stmt = Base_Datos.conexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT podcast.* FROM podcast");
-// Procesa los resultados
             while (rs.next()) {
                 String h = rs.getString("titulo");
                 String o = rs.getString("descripcion");
@@ -2008,6 +2003,8 @@ public class Controller implements Initializable {
         }
     }
 
+    // SIGUE UN PODCAST//
+    
     @FXML
     void seguir_podcast(ActionEvent event) {
         PodcastTodoClase al = tabla_podcast_sigue.getSelectionModel().getSelectedItem();
@@ -2033,6 +2030,8 @@ public class Controller implements Initializable {
         panel_podcastsigue.setVisible(false);
     }
 
+    // TABLA DE PODCAST A LOS QUE SIGO//
+    
     @FXML
     void ver_podcast_sigo(ActionEvent event) {
             podcassiguel.clear();
@@ -2040,7 +2039,6 @@ public class Controller implements Initializable {
                 Statement stmt = Base_Datos.conexion().createStatement();
                 ResultSet rs = stmt.executeQuery("SELECT podcast.* FROM podcast " +
                         "INNER JOIN podcast_usuario pu ON podcast.id = pu.podcast_id INNER JOIN usuario u ON pu.usuario_id = u.id WHERE u.username LIKE'" + nombre_usuario.getText() + "'");
-// Procesa los resultados
                 while (rs.next()) {
                     String titu = rs.getString("titulo");
                     String desc = rs.getString("descripcion");
@@ -2067,6 +2065,8 @@ public class Controller implements Initializable {
             panel_podcastsigue.setVisible(true);
         }
 
+    // PARA VER LOS CAPITULOS DE CADA PODCAST//
+    
     @FXML
     void clicktablapodcast(MouseEvent event) {
         PodcastTodoClase al = tabla_todo_podcast.getSelectionModel().getSelectedItem();
@@ -2104,6 +2104,8 @@ public class Controller implements Initializable {
         panel_podcastsigue.setVisible(false);
     }
 
+    //BOTON DE DEJAR DE SEGUIR PODCAST//
+    
     @FXML
     void dejar_de_seguir_podcast(ActionEvent event) {
         PodcastTodoClase al = tabla_podcast_sigue.getSelectionModel().getSelectedItem();
@@ -2127,6 +2129,9 @@ public class Controller implements Initializable {
         panel_podcastodo.setVisible(false);
         panel_podcastsigue.setVisible(true);
     }
+    
+    // BOTON DE DEJAR DE SEGUIR PLAYLIST//
+    
     @FXML
     void dejar_de_seguir_playlist(ActionEvent event) {
         PlaylistClase ali = tabla_nombres_playlist.getSelectionModel().getSelectedItem();
@@ -2139,6 +2144,8 @@ public class Controller implements Initializable {
         }
     }
 
+    // BOTON DE SEGUIR PLAYLIST//
+    
     @FXML
     void seguir_playlist(ActionEvent event) {
         PlaylistClase ali = tabla_todas_playlist.getSelectionModel().getSelectedItem();
@@ -2161,6 +2168,8 @@ public class Controller implements Initializable {
         }
     }
 
+    // PARA VER LAS CANCIONES DE LA PLAYLIST DE LAS TABLA PLAYLIST PATROCINADA//
+    
     @FXML
     void clicktabla1(MouseEvent event) {
         PlaylistClase arti = tabla_playlist_patrocinada.getSelectionModel().getSelectedItem();
@@ -2170,7 +2179,6 @@ public class Controller implements Initializable {
             Statement stmt = Base_Datos.conexion().createStatement();
             ResultSet rs = stmt.executeQuery("SELECT cancion.* FROM cancion " +
                     "INNER JOIN anyade_cancion_playlist a ON cancion.id = a.cancion_id INNER JOIN playlist p ON p.id = a.playlist_id WHERE p.titulo LIKE'" + titulo_album.getText() + "'");
-// Procesa los resultados
             while (rs.next()) {
                 String tit = rs.getString("titulo");
                 int nr = rs.getInt("numero_reproducciones");
@@ -2196,6 +2204,8 @@ public class Controller implements Initializable {
         panel_podcastsigue.setVisible(false);
     }
 
+    // BOTON PARA ENTRAR A LAS CANCIONES DE UNA PLAYLIST//
+    
     @FXML
     void entrar_playlist(ActionEvent event) {
         PlaylistClase artia = tabla_todas_playlist.getSelectionModel().getSelectedItem();
