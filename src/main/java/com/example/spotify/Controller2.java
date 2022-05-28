@@ -41,13 +41,14 @@ public class Controller2 implements Initializable {
         pepito=c;
     }
 
+    // METODO PARA INICIAR SESION//
+    
     @FXML
     void iniciar_user(ActionEvent event) {
 try{
     Statement stmt = Base_Datos.conexion().createStatement();
     ResultSet rs = stmt.executeQuery("SELECT username,password FROM usuario");
     int cont = 0;
-// Procesa los resultados
     while (rs.next()) {
         String nombre_us = rs.getString("username");
         String nombre_pass = rs.getString("password");
@@ -70,6 +71,9 @@ try{
 }
 
     }
+    
+    // BOTON PARA ABRIR LA VENTANA DE REGISTRO//
+    
     @FXML
     void registrar(ActionEvent event) {
         fxmlLoader = new FXMLLoader(Main.class.getResource("registro.fxml"));
