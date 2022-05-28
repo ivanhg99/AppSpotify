@@ -23,6 +23,8 @@ public class Controller7 {
     @FXML
     private TextField campoc;
 
+    // PARA PAGAR POR TARJETA//
+    
     @FXML
     void pagar_tarjeta(ActionEvent event) {
         if (campoa.getText().isEmpty() || campon.getText().isEmpty() || campom.getText().isEmpty() || campoc.getText().isEmpty()){
