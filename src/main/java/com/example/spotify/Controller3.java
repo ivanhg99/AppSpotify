@@ -17,6 +17,8 @@ public class Controller3 {
     @FXML
     private Button estudiantesp;
 
+    //BOTON DE LA VENTANA PREMIUM PARA DECIR QUE QUIERES CONTRATAR//
+    
     @FXML
     void estudiantesp(ActionEvent event) {
         fxmlLoader = new FXMLLoader(Main.class.getResource("metodos_pagar.fxml"));
@@ -39,6 +41,8 @@ public class Controller3 {
         }
     }
 
+      //BOTON DE LA VENTANA PREMIUM PARA DECIR QUE QUIERES CONTRATAR//
+    
     @FXML
     void familiarp(ActionEvent event) {
         fxmlLoader = new FXMLLoader(Main.class.getResource("metodos_pagar.fxml"));
@@ -61,6 +65,8 @@ public class Controller3 {
         }
     }
 
+      //BOTON DE LA VENTANA PREMIUM PARA DECIR QUE QUIERES CONTRATAR//
+    
     @FXML
     void individualp(ActionEvent event) {
         fxmlLoader = new FXMLLoader(Main.class.getResource("metodos_pagar.fxml"));
